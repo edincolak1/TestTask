@@ -18,4 +18,6 @@ class Board extends User
         return $this->hasMany(Stage::class);
     }
 
+
+
 }

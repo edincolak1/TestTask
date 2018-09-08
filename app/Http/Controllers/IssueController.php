@@ -6,7 +6,7 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueService;
-use App\Issues;
+use App\Issue;
 use Validator;
 use Auth;
 
@@ -29,12 +29,12 @@ class IssueController extends ApiController
 
     public function show($id)
     {
-        $issues = $this->issueservice->read($id);
+        $issue = $this->issueservice->read($id);
  
-       if(!$issues){
+       if(!$issue){
         throw new ResourceNotFoundException;
        }
-        return response()->json(['data'=>$issues]);
+        return response()->json(['data'=>$issue]);
     }
 
 
@@ -45,7 +45,7 @@ class IssueController extends ApiController
         ]);
 
         $user_id = Auth::user()->id;
-        $issue = Issues::find($id);
+        $issue = Issue::find($id);
     
         if($validate->fails()){
             
@@ -64,7 +64,7 @@ class IssueController extends ApiController
     }
     
 
-    public function destroy(Issues $issue)
+    public function destroy(Issue $issue)
         {
    
             $user_id = Auth::user()->id;
@@ -106,8 +106,8 @@ class IssueController extends ApiController
         else {
 
             $user_id = Auth::user()->id;
-            $issue = Issues::all();
-            Issues::create($request->all());
+            $issue = Issue::all();
+            Issue::create($request->all());
 
             $response=['status' => 'success', 'message'=> 'Issue successfuly added!'];
         }

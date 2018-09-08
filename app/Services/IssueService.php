@@ -4,27 +4,31 @@ namespace App\Services;
 
 
 use Illuminate\Http\Request;
-use App\Issues;
+use App\Services\TaskInterface;
+use App\Issue;
 
 
-class IssueService 
+class IssueService implements TaskInterface
 {
-    protected $user;
+    protected $issue;
 
-    public function __construct(Issues $issues)
+    public function __construct(Issue $issue)
     {
-        $this->issues = $issues ;
+        $this->issue = $issue;
     }
 
     public function index()
     {
-        return $this->issues->all();
+        return $this->issue->all();
     }
 
     public function read($id)
     {
-        return $this->issues->find($id);
+        return $this->issue->find($id);
     }
 
-   
+    public function update(Request $request, $id)
+    {
+
+    }
 }

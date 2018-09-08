@@ -3,13 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Transformers\StageTransformer;
 use App\Board;
-use App\Issues;
+use App\Issue;
 
 
 
 class Stage extends Model
 {
+
+    public $transformer = StageTransformer::class;
+
     protected $fillable = ['name','board_id','order'];
 
         public function board() {
@@ -17,7 +21,7 @@ class Stage extends Model
         }
 
         public function issues() {
-            return $this->hasMany(Issues::class);
+            return $this->hasMany(Issue::class);
         }
 
        

@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use App\Transformers\UserTransformer;
-use App\Issues;
+use App\Issue;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -41,6 +41,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function issues() {
-        return $this->hasMany(Issues::class);
+        return $this->hasMany(Issue::class);
     }
 }

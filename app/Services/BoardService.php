@@ -2,29 +2,28 @@
 
 namespace App\Services;
 
-use App\User;
+use App\Board;
 use Illuminate\Http\Request;
 use App\Services\TaskInterface;
 
 
-class UserService implements TaskInterface
+class BoardService implements TaskInterface
 {
-    protected $user;
+    protected $board;
 
-    public function __construct(User $user)
+    public function __construct(Board $board)
     {
-        $this->user = $user;
+        $this->board = $board;
     }
-
 
     public function index()
     {
-        return $this->user->all();
+        return $this->board->all();
     }
 
     public function read($id)
     {
-        return $this->user->find($id);
+        return $this->board->find($id);
     }
 
     public function update(Request $request, $id)

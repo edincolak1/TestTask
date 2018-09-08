@@ -2,29 +2,28 @@
 
 namespace App\Services;
 
-use App\User;
+use App\Stage;
 use Illuminate\Http\Request;
 use App\Services\TaskInterface;
 
 
-class UserService implements TaskInterface
+class StageService implements TaskInterface
 {
-    protected $user;
+    protected $stage;
 
-    public function __construct(User $user)
+    public function __construct(Stage $stage)
     {
-        $this->user = $user;
+        $this->stage = $stage;
     }
-
 
     public function index()
     {
-        return $this->user->all();
+        return $this->stage->all();
     }
 
     public function read($id)
     {
-        return $this->user->find($id);
+        return $this->stage->find($id);
     }
 
     public function update(Request $request, $id)

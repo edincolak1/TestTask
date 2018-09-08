@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use App\User;
 use App\Services\UserService;
-use App\Http\Requests\UserStoreRequest;
 use App\Exceptions\ResourceNotFoundException;
 
 class UserController extends ApiController

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Issues;
+use App\Issue;
 
 class IssuesTableSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class IssuesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Issues::class, 30)->create();
+        factory(Issue::class, 30)->create();
     }
 }
