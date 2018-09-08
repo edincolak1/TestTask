@@ -9,6 +9,6 @@ $factory->define(Issues::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
         'stage_id' => Stage::all()->random()->id,
-        'user_id' => User::all()->random()->id,
+        'user_id' => User::all()->random()->id
     ];
 });

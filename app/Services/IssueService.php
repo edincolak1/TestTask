@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
-use App\Issues;
-use App\Repositories\IssueRepository;
-use Illuminate\Http\Request;
 
-class IssueService
+use Illuminate\Http\Request;
+use App\Issues;
+
+
+class IssueService 
 {
-    public function __construct(IssueRepository $issues)
+    protected $user;
+
+    public function __construct(Issues $issues)
     {
         $this->issues = $issues ;
     }
@@ -22,4 +25,6 @@ class IssueService
     {
         return $this->issues->find($id);
     }
+
+   
 }

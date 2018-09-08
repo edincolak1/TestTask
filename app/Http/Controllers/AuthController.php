@@ -82,10 +82,5 @@ class AuthController extends Controller
         ]);
     }
 
-    public function destroy($id)
-    {   
 
-        
-
-    }
 }

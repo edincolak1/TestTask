@@ -3,12 +3,14 @@
 namespace App\Services;
 
 use App\User;
-use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class UserService
+
+class UserService 
 {
-    public function __construct(UserRepository $user)
+    protected $user;
+
+    public function __construct(User $user)
     {
         $this->user = $user ;
     }
@@ -22,4 +24,6 @@ class UserService
     {
         return $this->user->find($id);
     }
+
+    
 }

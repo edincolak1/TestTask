@@ -34,7 +34,7 @@ class UserController extends ApiController
        if(!$user){
         throw new ResourceNotFoundException;
        }
-        return response()->json(['data'=>$user]);
+        return $this->showOne($user);
  
     }
     

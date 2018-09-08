@@ -12,6 +12,6 @@ class StagesTableSeeder extends Seeder
      */
     public function run()
         {
-                factory(Stage::class, 4)->create();
+                factory(Stage::class, 3)->create();
         }
 }
