@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueService;
+use App\Http\Requests\IssueStoreRequest;
 use App\Issue;
 use Validator;
 use Auth;
@@ -40,9 +41,6 @@ class IssueController extends ApiController
 
     public function transfer(Request $request, $id)
     {
-        $validate = Validator::make($request->all(), [
-            'user_id' => 'required'
-        ]);
 
         $user_id = Auth::user()->id;
         $issue = Issue::find($id);
@@ -88,31 +86,14 @@ class IssueController extends ApiController
         }
     
 
-    public function update(Request $request, $id) 
-        {
-            $validate = Validator::make($request->all(), [
-                'title' => 'required',
-                'stage_id' => 'required',
-                'user_id' => 'required',
-                'order' => 'required'
-        ]);
-
-            
-    
-            if($validate->fails()){
-            
-                $response=['status' => 'error', 'message'=> 'title, stage_id, user_id, order are mandatory field!'];
-            }
-        else {
-
+    public function update(IssueStoreRequest $request, $id) 
+        {       
             $user_id = Auth::user()->id;
             $issue = Issue::all();
             Issue::create($request->all());
 
             $response=['status' => 'success', 'message'=> 'Issue successfuly added!'];
+            return $response;
         }
-
-            return response($response);
-    }
 
 }
