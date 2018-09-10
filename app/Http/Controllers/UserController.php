@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
+use App\Services\UserInterface;
 use App\User;
 use App\Services\UserService;
 use App\Exceptions\ResourceNotFoundException;
@@ -13,7 +14,7 @@ class UserController extends ApiController
 
     protected $userservice;
 
-    public function __construct(UserService $userservice)
+    public function __construct(UserInterface $userservice)
     {
         $this->userservice = $userservice;
     }

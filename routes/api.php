@@ -23,7 +23,6 @@ Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
     Route::resource('boards', 'BoardController', ['only' => ['index','show']]);
     Route::resource('issues', 'IssueController');
     Route::put('issues/{$id}', 'IssueController@transfer');
-    Route::resource('stages', 'StageController');
-
+    Route::get('stages', 'StageController@index');
 
 });

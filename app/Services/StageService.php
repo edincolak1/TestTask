@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Stage;
 use Illuminate\Http\Request;
-use App\Services\TaskInterface;
+use App\Services\StageInterface;
 
 
-class StageService implements TaskInterface
+class StageService implements StageInterface
 {
     protected $stage;
 
@@ -21,13 +21,4 @@ class StageService implements TaskInterface
         return $this->stage->all();
     }
 
-    public function read($id)
-    {
-        return $this->stage->find($id);
-    }
-
-    public function update(Request $request, $id)
-    {
-
-    }
 }

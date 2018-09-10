@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Services\TaskInterface;
+use App\Services\UserInterface;
 
 
-class UserService implements TaskInterface
+class UserService implements UserInterface
 {
     protected $user;
 
@@ -27,8 +27,4 @@ class UserService implements TaskInterface
         return $this->user->find($id);
     }
 
-    public function update(Request $request, $id)
-    {
-
-    }
 }

@@ -7,13 +7,14 @@ use App\Exceptions\ResourceNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Services\BoardService;
+use App\Services\BoardInterface;
 use App\Board;
 
 class BoardController extends ApiController
 {
     protected $boardservice;
     
-    public function __construct(BoardService $boardservice)
+    public function __construct(BoardInterface $boardservice)
     {
         $this->boardservice = $boardservice;
     }

@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Board;
 use Illuminate\Http\Request;
-use App\Services\TaskInterface;
+use App\Services\BoardInterface;
 
 
-class BoardService implements TaskInterface
+class BoardService implements BoardInterface
 {
     protected $board;
 
@@ -26,8 +26,4 @@ class BoardService implements TaskInterface
         return $this->board->find($id);
     }
 
-    public function update(Request $request, $id)
-    {
-
-    }
 }

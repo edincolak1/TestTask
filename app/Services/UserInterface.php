@@ -4,11 +4,10 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-interface TaskInterface
+interface UserInterface
 {
     public function index();
 
     public function read($id);
 
-    public function update(Request $request, $id);
 }

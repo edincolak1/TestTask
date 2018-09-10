@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Stage;
 use App\Http\Controllers\ApiController;
 use App\Services\StageService;
-
+use App\Services\StageInterface;
 
 
 class StageController extends ApiController
@@ -14,7 +14,7 @@ class StageController extends ApiController
     
     protected $stageservice;
 
-    public function __construct(StageService $stageservice)
+    public function __construct(StageInterface $stageservice)
     {
         $this->stageservice = $stageservice;
     }

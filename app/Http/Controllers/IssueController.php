@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueService;
+use App\Services\IssueInterface;
 use App\Http\Requests\IssueStoreRequest;
 use App\Issue;
 use Validator;
@@ -15,7 +16,7 @@ class IssueController extends ApiController
 {
     protected $issueservice;
 
-    public function __construct(IssueService $issueservice)
+    public function __construct(IssueInterface $issueservice)
     {
         $this->issueservice = $issueservice;
     }
@@ -28,6 +29,8 @@ class IssueController extends ApiController
         return $this->showAll($issues);
     }
 
+    
+
     public function show($id)
     {
         $issue = $this->issueservice->read($id);
@@ -35,44 +38,26 @@ class IssueController extends ApiController
        if(!$issue){
         throw new ResourceNotFoundException;
        }
-        return response()->json(['data'=>$issue]);
+        return $this->showOne($issue);
     }
 
 
-    public function transfer(Request $request, $id)
+
+    public function transfer($id)
     {
+        $issue = $this->issueservice->transfer();
 
-        $user_id = Auth::user()->id;
-        $issue = Issue::find($id);
-    
-        if($validate->fails()){
-            
-            $response=['status' => 'error', 'message'=> 'user_id is mandatory field!'];
-        } else if($user_id == $issue->user_id){
-
-            $issue->user_id = $request->user_id;             
-            $issue->save();
-
-            $response=['status' => 'success', 'message'=> 'Issue successfuly transfered to another user!'];
-        }else{
-            $response=['status' => 'faild', 'message'=> 'Can`t transfer issue!'];
-        }
-
-        return response($response);
+        return response()->json('Issue transfered');
     }
     
 
     public function destroy(Issue $issue)
         {
-   
             $user_id = Auth::user()->id;
-            
-       
-        
+                   
             if($user_id == $issue->user_id){
     
                 $issue->delete();
-
                 $response=['status' => 'success', 'message'=> 'Issue successfuly deleted!'];
             }else if($user_id != $issue->user_id){
                 
@@ -82,17 +67,26 @@ class IssueController extends ApiController
             }
     
             return response($response);
-    
         }
-    
+
 
     public function update(IssueStoreRequest $request, $id) 
-        {       
+        {   
+            $user_id = Auth::user()->id;
+            $issue = Issue::find($id);
+            Issue::create($request->all());  
+
+            $response=['status' => 'success', 'message'=> 'Issue successfuly stored!'];
+            return $response;
+        }
+
+        public function store(IssueStoreRequest $request) 
+        {   
             $user_id = Auth::user()->id;
             $issue = Issue::all();
-            Issue::create($request->all());
+            Issue::create($request->all());  
 
-            $response=['status' => 'success', 'message'=> 'Issue successfuly added!'];
+            $response=['status' => 'success', 'message'=> 'Issue successfuly stored!'];
             return $response;
         }
 

@@ -147,6 +147,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\StageServiceProvider::class,
+        App\Providers\BoardServiceProvider::class,
+        App\Providers\IssueServiceProvider::class,
+
 
         /*
          * Package Service Providers...
