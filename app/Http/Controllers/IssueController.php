@@ -8,6 +8,7 @@ use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueService;
 use App\Services\IssueInterface;
 use App\Http\Requests\IssueStoreRequest;
+use App\Http\Requests\IssueUpdateRequest;
 use App\Issue;
 use Validator;
 use Auth;
@@ -70,7 +71,7 @@ class IssueController extends ApiController
         }
 
 
-    public function update(IssueStoreRequest $request, $id) 
+    public function update(IssueUpdateRequest $request, $id) 
         {   
             $user_id = Auth::user()->id;
             $issue = Issue::find($id);
@@ -80,7 +81,7 @@ class IssueController extends ApiController
             return $response;
         }
 
-        public function store(IssueStoreRequest $request) 
+        public function store(IssueStoreRequest $request,$id) 
         {   
             $user_id = Auth::user()->id;
             $issue = Issue::all();

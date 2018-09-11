@@ -62,7 +62,7 @@ class IssueService implements IssueInterface
         return response($response);
     }
 
-    public function update(array $data, $id)
+    public function store(array $data, $id)
     {
             
     }

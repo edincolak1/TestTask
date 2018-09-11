@@ -12,6 +12,6 @@ class BoardsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Board::class, 4)->create();
+        factory(Board::class, 3)->create();
     }
 }

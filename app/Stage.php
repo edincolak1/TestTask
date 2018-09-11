@@ -12,9 +12,10 @@ use App\Issue;
 class Stage extends Model
 {
 
-    public $transformer = StageTransformer::class;
+        public $transformer = StageTransformer::class;
 
-    protected $fillable = ['name','board_id','order'];
+        protected $fillable = ['name','board_id','order'];
+
 
         public function board() {
             return $this->belongsTo(Board::class);
