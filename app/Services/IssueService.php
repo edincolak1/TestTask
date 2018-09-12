@@ -5,6 +5,8 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Services\IssueInterface;
+use App\Responses\IssueUpdateRequest;
+use App\Exceptions\Handler;
 use App\Issue;
 use App\User;
 use Auth;
@@ -19,6 +21,7 @@ class IssueService implements IssueInterface
         $this->issue = $issue;
     }
 
+
     public function index()
     {
         return $this->issue->all();
@@ -29,40 +32,29 @@ class IssueService implements IssueInterface
         return $this->issue->find($id);
     }
 
-    public function edit(Request $request,$id)
-    {
-        return $this->issue->find($id);
-    }
 
     public function delete($id)
     {
-            
-            
-        
+            $user_id = Auth::user()->id;
+                  
+            if($user_id == $issue->user_id){
+                $issue = Issue::find($id); 
+                $issue->delete();
+
+            }
     }
 
     public function transfer(Request $request,$id)
     {
         $user_id = Auth::user()->id;
         $issue = Issue::find($id);
-    
-        if($validate->fails()){
-            
-            $response=['status' => 'error', 'message'=> 'user_id is mandatory field!'];
-        } else if($user_id == $issue->user_id){
 
-            $issue->user_id = $request->user_id;             
-            $issue->save();
+        $issue->stage_id = $request->input('stage_id');
 
-            $response=['status' => 'success', 'message'=> 'Issue successfuly transfered to another user!'];
-        }else{
-            $response=['status' => 'faild', 'message'=> 'Can`t transfer issue!'];
-        }
-
-        return response($response);
+        $issue->save();
     }
 
-    public function store(array $data, $id)
+    public function store(Request $request, $id)
     {
             
     }

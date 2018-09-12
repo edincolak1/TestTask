@@ -10,8 +10,11 @@ interface IssueInterface
 
     public function read($id);
 
-    public function store(array $data, $id);
+    public function delete($id);
+
+    public function store(Request $request, $id);
 
     public function transfer(Request $request,$id);
+    
 
 }
