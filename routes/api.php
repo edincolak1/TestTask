@@ -24,10 +24,6 @@ Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
     Route::resource('stages', 'StageController', ['only' => ['index','show']]);
     Route::resource('issues', 'IssueController');
     Route::put('issues/{$id}', 'IssueController@transfer');
-<<<<<<< HEAD
     
-=======
-    Route::get('stages', 'StageController@index');
->>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
 
 });
