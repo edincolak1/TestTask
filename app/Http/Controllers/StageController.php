@@ -7,8 +7,11 @@ use App\Stage;
 use App\Http\Controllers\ApiController;
 use App\Services\StageService;
 use App\Services\StageInterface;
+<<<<<<< HEAD
 use App\Exceptions\ResourceNotFoundException;
 
+=======
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
 
 
 class StageController extends ApiController
@@ -26,6 +29,7 @@ class StageController extends ApiController
         $stage = $this->stageservice->index();
          
         return $this->showAll($stage);
+<<<<<<< HEAD
     }
 
     public function show($id)
@@ -38,5 +42,7 @@ class StageController extends ApiController
        }
         return $this->showOne($stage);
  
+=======
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
     }
 }

@@ -12,6 +12,7 @@ class BoardsTableSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         /*DB:table('boards')->delete();
 
         $boards = array(*/
@@ -22,5 +23,8 @@ class BoardsTableSeeder extends Seeder
         
         DB::table('boards')->insert($boards);
         //factory(Board::class, 3)->create();*/
+=======
+        factory(Board::class, 3)->create();
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
     }
 }

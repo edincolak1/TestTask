@@ -35,6 +35,7 @@ class IssueService implements IssueInterface
 
     public function delete($id)
     {
+<<<<<<< HEAD
             $issue = Issue::find($id);    
             
             $user_id = Auth::user()->id;
@@ -44,6 +45,15 @@ class IssueService implements IssueInterface
             $response = [ 'status' => 'failed','message' => 'You can not delete this issue'];
             
             return $response;
+=======
+            $user_id = Auth::user()->id;
+                  
+            if($user_id == $issue->user_id){
+                $issue = Issue::find($id); 
+                $issue->delete();
+
+            }
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
     }
 
     public function transfer(Request $request,$id)
@@ -58,6 +68,10 @@ class IssueService implements IssueInterface
 
     public function store(Request $request, $id)
     {
+<<<<<<< HEAD
         
+=======
+            
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34
     }
 }

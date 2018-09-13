@@ -24,7 +24,11 @@ class IssueTransferRequest extends FormRequest
     public function rules()
     {
         return [
+<<<<<<< HEAD:app/Http/Requests/IssueTransferRequest.php
             'stage_id' => 'required',         
+=======
+            'stage_id' => 'filled',         
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34:app/Http/Requests/IssueTransferRequest.php
         ];
 
     }
@@ -33,7 +37,11 @@ class IssueTransferRequest extends FormRequest
     {
         return [
          
+<<<<<<< HEAD:app/Http/Requests/IssueTransferRequest.php
             'stage_id.required' => 'stage_id attribute is required',           
+=======
+            'stage_id.filled' => 'stage_id attribute must be filled',           
+>>>>>>> 840a63e40ec6bc6b94c7ea7b883a9202f25c0c34:app/Http/Requests/IssueTransferRequest.php
                           
         ];       
     }
