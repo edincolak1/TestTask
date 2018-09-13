@@ -12,6 +12,15 @@ class BoardsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Board::class, 4)->create();
+        /*DB:table('boards')->delete();
+
+        $boards = array(*/
+        Board::create(['id' => 1, 'title' => 'title 1', 'description' => 'description 1']);
+        Board::create(['id' => 2, 'title' => 'title 2', 'description' => 'description 2']);
+        
+        /*);
+        
+        DB::table('boards')->insert($boards);
+        //factory(Board::class, 3)->create();*/
     }
 }

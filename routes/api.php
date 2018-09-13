@@ -20,9 +20,10 @@ Route::post('login', 'AuthController@login');
 Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
 
     Route::resource('users', 'UserController', ['only' => ['index','show']]);
-    Route::resource('boards', 'BoardController', ['only' => ['index','show']]);
+    Route::resource('boards', 'BoardController', ['only' => ['index','show']]);   
+    Route::resource('stages', 'StageController', ['only' => ['index','show']]);
     Route::resource('issues', 'IssueController');
-    Route::resource('stage', 'StageController');
-
+    Route::put('issues/{$id}', 'IssueController@transfer');
+    
 
 });

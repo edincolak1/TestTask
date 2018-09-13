@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use App\Issues;
 
 
 class AuthController extends Controller
 {
-    public function register(RegisterFormRequest $request)
+    public function register(RegisterRequest $request)
     {
         $user = new User;
         $user->email = $request->email;
@@ -82,10 +82,5 @@ class AuthController extends Controller
         ]);
     }
 
-    public function destroy($id)
-    {   
 
-        
-
-    }
 }

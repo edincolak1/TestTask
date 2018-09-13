@@ -17,10 +17,11 @@ class CreateStagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('order');
-            $table->integer('board_id')->unsigned();             
+            $table->integer('board_id')->unsigned(); 
+            $table->boolean('completed')->default(false);            
             $table->timestamps();
 
-            $table->foreign('board_id')->references('id')->on('users'); 
+            $table->foreign('board_id')->references('id')->on('boards'); 
         });
     }
 

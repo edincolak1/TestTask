@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterFormRequest extends FormRequest
+class IssueTransferRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,18 @@ class RegisterFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6|max:10',
+            'stage_id' => 'required',         
         ];
+
     }
+
+    public function messages()
+    {
+        return [
+         
+            'stage_id.required' => 'stage_id attribute is required',           
+                          
+        ];       
+    }
+
 }

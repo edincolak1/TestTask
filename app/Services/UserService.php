@@ -3,15 +3,19 @@
 namespace App\Services;
 
 use App\User;
-use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use App\Services\UserInterface;
 
-class UserService
+
+class UserService implements UserInterface
 {
-    public function __construct(UserRepository $user)
+    protected $user;
+
+    public function __construct(User $user)
     {
-        $this->user = $user ;
+        $this->user = $user;
     }
+
 
     public function index()
     {
@@ -22,4 +26,5 @@ class UserService
     {
         return $this->user->find($id);
     }
+
 }

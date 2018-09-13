@@ -8,7 +8,7 @@ $factory->define(App\Stage::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'board_id' => Board::all()->random()->id,
-        'order' => $faker->numberBetween(1, 3),
+        'order' => $faker->numberBetween(1,5)
     ];
 });
 

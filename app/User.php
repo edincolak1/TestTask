@@ -6,11 +6,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use App\Issues;
+use App\Transformers\UserTransformer;
+use App\Issue;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
+    public $transformer = UserTransformer::class;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +41,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function issues() {
-        return $this->hasMany(Issues::class);
+        return $this->hasMany(Issue::class);
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Issues;
+use App\Issue;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -17,9 +17,9 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Issue $issue)
     {
-        return $user->id === $user->id;
+        return $user->id === $issue->user_id;
     }
 
     /**
@@ -28,11 +28,11 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user, Issues $issues)
+    public function create(User $user, Issue $issue)
     {
-        if ($user->can('issues.create-all'))
+        if (auth()->user->can('create', $issue)){
             return true;
-
+        }
         return false;
     }
 
@@ -44,11 +44,11 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function update(User $user, Issues $issue)
+    public function update(User $user, Issue $issue)
     {
-        if ($user->can('issues.update-all'))
+        if (auth()->$user->can('update', $issue)){
             return true;
-
+        }
         return false;
     }
 
@@ -60,11 +60,11 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function delete(User $user, Issues $issue)
+    public function delete(User $user, Issue $issue)
     {
-        if ($user->can('Issues.delete-all'))
+        if (auth()->$user->can('delete', $issue)){
             return true;
-
+        }
         return false;
     }
 
