@@ -12,7 +12,7 @@ interface IssueInterface
 
     public function delete($id);
 
-    public function store(Request $request, $id);
+    public function store(Request $request);
 
     public function transfer(Request $request,$id);
     

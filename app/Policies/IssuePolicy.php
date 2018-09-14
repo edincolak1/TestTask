@@ -28,7 +28,7 @@ class IssuePolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function store(User $user)
     {
         return $user->id > 0;
     }
