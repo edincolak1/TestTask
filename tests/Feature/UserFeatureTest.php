@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Api;
 
-use App\Issues;
+use App\Issue;
 use App\Board;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -44,7 +44,7 @@ class UserFeatureTest extends TestCase
 
     public function testAllIssues()
     {
-        $this->issues('issues', ['title' => 'awesome issue'], ['HTTP_Authorization' => 'Bearer' . $token]);
+        $this->issue('issues', ['title' => 'awesome issue'], ['HTTP_Authorization' => 'Bearer' . $token]);
         $response = $this->json('GET', '/api/auth/issues');
             $response->assertStatus(200);
 
@@ -53,8 +53,7 @@ class UserFeatureTest extends TestCase
                     [
                         'title',
                         'stage_id',
-                        'user_id', 
-                        'order'
+                        'user_id'
                     ]
                 ]
             );
@@ -69,21 +68,20 @@ class UserFeatureTest extends TestCase
                     [
                     'title',
                     'stage_id',
-                    'user_id', 
-                    'order'
+                    'user_id'
                     ]
                 ]
             );
 
-            $issue = factory(\App\Issues::class)->create();
-            $delete = $this->actingAs($issues, 'api')->json('GET', '/api/auth/issues/delete'.$issue->id);
+            $issue = factory(\App\Issue::class)->create();
+            $delete = $this->actingAs($issue, 'api')->json('GET', '/api/auth/issues/delete'.$issue->id);
             $delete->assertStatus(200);
             $delete->assertJson(['message' => "Issue Deleted!"]);
     }
 
     public function testUpdateIssue()
     {
-            $issue = factory(\App\Issues::class)->create();
+            $issue = factory(\App\Issue::class)->create();
             $response = $this->actingAs($issue, 'api')->json('POST', '/api/auth/issues/edit'.$issue->id);
             $response->assertStatus(200);
 
@@ -91,8 +89,7 @@ class UserFeatureTest extends TestCase
                     [
                     'title',
                     'stage_id',
-                    'user_id', 
-                    'order'
+                    'user_id'
                     ]
                 ]
             );

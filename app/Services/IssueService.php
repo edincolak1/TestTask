@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use Illuminate\Http\Request;
+use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueInterface;
 use App\Responses\IssueUpdateRequest;
 use App\Responses\IssueStoreRequest;
@@ -31,15 +32,11 @@ class IssueService implements IssueInterface
     
     public function read($id)
     {
-        $issue = auth()->user()->issues()->find($id);
+        $issue = Issue::find($id);
  
-        if (!$issue) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Issue with id ' . $id . ' does not belong to this user!'
-            ], 400);
+        if(!$issue){
+            throw new ResourceNotFoundException;
         }
- 
         
         return $this->issue->find($id);
     }
@@ -48,20 +45,18 @@ class IssueService implements IssueInterface
     public function delete($id)
     {
         $issue = auth()->user()->issues()->find($id);
- 
-            if (!$issue) {
+
+            $issue = Issue::find($id);   
+
+            if($user_id = Auth::user()->id){
+                $issue->delete();
+            }
+            else {
                 return response()->json([
                     'success' => false,
                     'message' => 'Issue with id ' . $id . ' does not belong to this user!'
             ], 400);
-
-            } else{
-
-            $issue = Issue::find($id);    
-            
-            $user_id = Auth::user()->id;
-                  
-            $issue->delete();
+                                  
         }
 
     }
