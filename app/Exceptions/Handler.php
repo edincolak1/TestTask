@@ -13,7 +13,6 @@ use App\Traits\ApiResponser;
 
 class Handler extends ExceptionHandler
 {
-
     use ApiResponser;
     /**
      * A list of the exception types that are not reported.
@@ -54,21 +53,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        
-        if($exception instanceof ValidationException){
+        if ($exception instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
-        if($exception instanceof AuthenticationException){
+        if ($exception instanceof AuthenticationException) {
             return $this->errorResponse($request, $exception);
         }
-        if($exception instanceof AuthorizationException){
-            return $this->errorResponse($exception->getMessage(),403);
+        if ($exception instanceof AuthorizationException) {
+            return $this->errorResponse($exception->getMessage(), 403);
         }
-        if($exception instanceof NotFoundHttpException){
-            return $this->errorResponse("The specified URL cannot be found",404);
+        if ($exception instanceof NotFoundHttpException) {
+            return $this->errorResponse("The specified URL cannot be found", 404);
         }
-        if($exception instanceof MethodNotAllowedHttpException){
-            return $this->errorResponse("The specified method for the request is invalid",405);
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return $this->errorResponse("The specified method for the request is invalid", 405);
         }
         return parent::render($request, $exception);
     }

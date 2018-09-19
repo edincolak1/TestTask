@@ -22,21 +22,17 @@ class BoardController extends ApiController
 
     public function index()
     {
-
-        $boards = Board::orderBy('id','asc')->with('stage')->get();       
+        $boards = Board::orderBy('id', 'asc')->with('stage')->get();
         return $this->showAll($boards);
-
     }
 
     public function show($id)
     {
         $board = $this->boardservice->read($id);
  
-       if(!$board){
-        throw new ResourceNotFoundException;
-       }
+        if (!$board) {
+            throw new ResourceNotFoundException;
+        }
         return $this->showOne($board);
     }
-
-    
 }

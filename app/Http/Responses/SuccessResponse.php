@@ -9,10 +9,10 @@ class Succeessesponse
 
     public function __construct($message = null, $statusCode = null)
     {
-        if(!is_null($statusCode)){
+        if (!is_null($statusCode)) {
             $this->setStatusCode($statusCode);
         }
-        if(!is_null($message)){
+        if (!is_null($message)) {
             $this->setMessage($message);
         }
     }
@@ -44,8 +44,4 @@ class Succeessesponse
             "description" => $this->getMessage()
         ];
     }
-
-
-
-
 }

@@ -14,7 +14,5 @@ interface IssueInterface
 
     public function store(Request $request);
 
-    public function transfer(Request $request,$id);
-    
-
+    public function transfer(Request $request, $id);
 }

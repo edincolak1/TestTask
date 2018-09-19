@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use Illuminate\Http\Request;
 use App\Exceptions\ResourceNotFoundException;
 use App\Services\IssueInterface;
@@ -13,7 +12,6 @@ use App\Exceptions\Handler;
 use App\Issue;
 use App\User;
 use Auth;
-
 
 class IssueService implements IssueInterface
 {
@@ -34,7 +32,7 @@ class IssueService implements IssueInterface
     {
         $issue = Issue::find($id);
  
-        if(!$issue){
+        if (!$issue) {
             throw new ResourceNotFoundException;
         }
         
@@ -46,22 +44,19 @@ class IssueService implements IssueInterface
     {
         $issue = auth()->user()->issues()->find($id);
 
-            $issue = Issue::find($id);   
+        $issue = Issue::find($id);
 
-            if($user_id = Auth::user()->id){
-                $issue->delete();
-            }
-            else {
-                return response()->json([
+        if ($user_id = Auth::user()->id) {
+            $issue->delete();
+        } else {
+            return response()->json([
                     'success' => false,
                     'message' => 'Issue with id ' . $id . ' does not belong to this user!'
             ], 400);
-                                  
         }
-
     }
 
-    public function transfer(Request $request,$id)
+    public function transfer(Request $request, $id)
     {
         $user_id = Auth::user()->id;
         $issue = Issue::find($id);
@@ -72,30 +67,28 @@ class IssueService implements IssueInterface
 
     public function store(Request $request)
     {
-            $user = Auth::user();
-            $issue = Issue::all();
+        $user = Auth::user();
+        $issue = Issue::all();
 
-            if (!auth()->user()->can('create', $issue)) {
-
-                $user_id = Auth::user()->id;
-                $issue = new Issue;
-                $issue->title = $request->input('title');
-                $issue->user_id = $request->input('user_id');
-                $issue->stage_id = $request->input('stage_id');
-
-                $issue->save();
-                            
-            } else {              
-                throw new ForbidenException;
-            }
+        if (!auth()->user()->can('create', $issue)) {
+            $user_id = Auth::user()->id;
+            $issue = new Issue;
+            $issue->title = $request->input('title');
+            $issue->user_id = $request->input('user_id');
+            $issue->stage_id = $request->input('stage_id');
+            $issue->save();
+        } else {
+            throw new ForbidenException;
+        }
     }
 
     public function update(Request $request, $id)
     {
         $issue = $this->findById($id);
         
-        if (isset($data['stage_id']))
+        if (isset($data['stage_id'])) {
             $issue->stage_id = $data['stage_id'];
+        }
 
         $issue->save();
 

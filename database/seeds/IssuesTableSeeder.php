@@ -18,6 +18,5 @@ class IssuesTableSeeder extends Seeder
         Issue::create(['id' => 4, 'title' => 'issue 4', 'user_id' => 1, 'stage_id' => 3]);
         Issue::create(['id' => 5, 'title' => 'issue 5', 'user_id' => 1, 'stage_id' => 2]);
         Issue::create(['id' => 6, 'title' => 'issue 6', 'user_id' => 1, 'stage_id' => 1]);
-        
     }
 }

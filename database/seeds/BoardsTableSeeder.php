@@ -13,6 +13,6 @@ class BoardsTableSeeder extends Seeder
     public function run()
     {
         Board::create(['id' => 1, 'title' => 'title 1', 'description' => 'description 1']);
-        Board::create(['id' => 2, 'title' => 'title 2', 'description' => 'description 2']);  
+        Board::create(['id' => 2, 'title' => 'title 2', 'description' => 'description 2']);
     }
 }
